@@ -13,6 +13,7 @@ let upload = multer({
 });
 let cookieParser = require("cookie-parser");
 app.use(cookieParser());
+let sessions = {};
 
 let dbo = undefined;
 let url =
@@ -30,14 +31,11 @@ app.use('/', express.static('build')); // Needed for the HTML and JS files
 app.use('/', express.static('public')); // Needed for local assets
 
 // Your endpoints go after this line
-app.post("/signup", upload.single("img"), (req, res) => {
+app.post("/signup", upload.none(), (req, res) => {
     console.log("Signup are you working?");
     let name = req.body.username;
     let pwd = req.body.password;
-    let location = req.body.location;
-    let file = req.file;
-    let imgPath = "/uploads/" + file.filename;
-    console.log("backend image", imgPath);
+    let email = req.body.email;
     dbo.collection("users").findOne({
             username: name
         },
@@ -62,13 +60,12 @@ app.post("/signup", upload.single("img"), (req, res) => {
                 dbo.collection("users").insertOne({
                     username: name,
                     password: pwd,
-                    location: location,
-                    image: imgPath
+                    email: email,
                 });
                 let sessionId = generateId();
                 sessions[sessionId] = name;
                 res.cookie("sid", sessionId);
-                res.json(
+                res.send(
                     JSON.stringify({
                         success: true
                     })
@@ -121,6 +118,11 @@ app.post("/login", upload.none(), (req, res) => {
         }
     );
 });
+
+let generateId = () => {
+    return "" + Math.floor(Math.random() * 100000000);
+};
+
 
 // Your endpoints go before this line
 

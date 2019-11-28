@@ -46,12 +46,12 @@ class UnconnectedLogin extends Component {
     this.setState({ redirect: true });
   };
   render = () => {
-    if (this.state.redirect) return <Redirect to="/" />;
+    if (this.state.redirect) return <Redirect to="/UserPage" />;
     return (
       <div className="background">
         <div className="login-page">
           <div className="form">
-            <form className="register-form">
+            <form className="login-form" onSubmit={this.handleSubmit}>
               <input
                 type="text"
                 placeholder="name"
@@ -62,15 +62,6 @@ class UnconnectedLogin extends Component {
                 placeholder="password"
                 onChange={this.handlePasswordChange}
               />
-              {/* <input type="text" placeholder="email address"/> */}
-              <button onSubmit={this.handleSubmit}>create</button>
-              <p className="message">
-                Already registered? <a href="#">Sign In</a>
-              </p>
-            </form>
-            <form className="login-form">
-              <input type="text" placeholder="username" />
-              <input type="password" placeholder="password" />
               <button>login</button>
               <div className="message">
                 Not registered?{" "}
