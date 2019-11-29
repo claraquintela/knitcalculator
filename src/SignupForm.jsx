@@ -5,13 +5,14 @@ import { Link, Redirect } from "react-router-dom";
 import Header from "./Header.jsx";
 import Footer from "./Footer.jsx";
 
-class UnconnectedSignup extends Component {
+class UnconnectedSignupForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
       username: "",
       password: "",
-      email: ""
+      email: "",
+      subscription: false
     };
   }
   handleUsernameChange = event => {
@@ -23,7 +24,9 @@ class UnconnectedSignup extends Component {
   handleEmail = event => {
     this.setState({ email: event.target.value });
   };
-
+  handleCheckboxChange = event => {
+    this.setState({ subscription: event.target.checked });
+  };
   signupSubmitHandler = async event => {
     console.log("signup1");
     event.preventDefault();
@@ -31,6 +34,7 @@ class UnconnectedSignup extends Component {
     data.append("username", this.state.username);
     data.append("password", this.state.password);
     data.append("email", this.state.email);
+    data.append("subscription", this.state.subscription);
     let response = await fetch("/signup", {
       method: "POST",
       body: data,
@@ -54,7 +58,7 @@ class UnconnectedSignup extends Component {
     this.setState({ redirect: true });
   };
   render() {
-    if (this.state.redirect) return <Redirect to="/UserPage" />;
+    if (this.state.redirect) return <Redirect to="/homepage" />;
     return (
       <div>
         <Header />
@@ -80,10 +84,15 @@ class UnconnectedSignup extends Component {
                   onChange={this.handleEmail}
                   value={this.state.email}
                 />
+                <div className="checkbox">
+                  <input type="checkbox" onChange={this.handleCheckboxChange} />
+                  <div className="subscribe">Subscribe to my newsletter</div>
+                </div>
                 <button>Sign up</button>
                 <div className="message">
                   Already registered?{" "}
                   <Link className="link" to="/">
+                    {" "}
                     <div className="link">Log in</div>
                   </Link>
                 </div>
@@ -96,5 +105,5 @@ class UnconnectedSignup extends Component {
     );
   }
 }
-let Signup = connect()(UnconnectedSignup);
-export default Signup;
+let SignupForm = connect()(UnconnectedSignupForm);
+export default SignupForm;

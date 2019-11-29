@@ -1,23 +1,26 @@
 import React, { Component } from "react";
-import { connect } from "react-redux";
 import { Link, Redirect } from "react-router-dom";
-import "./userpage.css";
+import "./userindex.css";
 
-class UnconnectedUserPage extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      username: "",
-      password: ""
-    };
-  }
+class UnconnectedUserIndex extends Component {
   render = () => {
     return (
-      <div className="box">
-        <div></div>
+      <div className="grid">
+        <div>
+          <h3 className="patternList">
+            {" "}
+            Your patterns:
+            <li></li>
+          </h3>
+          <input
+            type="submit"
+            className="buttonNew"
+            value="Start a new pattern"
+          />
+        </div>
       </div>
     );
   };
 }
-let UserPage = connect()(UnconnectedUserPage);
-export default UserPage;
+
+export default UnconnectedUserIndex;

@@ -36,6 +36,7 @@ app.post("/signup", upload.none(), (req, res) => {
     let name = req.body.username;
     let pwd = req.body.password;
     let email = req.body.email;
+    let subscription = req.body.subscription;
     dbo.collection("users").findOne({
             username: name
         },
@@ -61,6 +62,7 @@ app.post("/signup", upload.none(), (req, res) => {
                     username: name,
                     password: pwd,
                     email: email,
+                    subscription: subscription,
                 });
                 let sessionId = generateId();
                 sessions[sessionId] = name;

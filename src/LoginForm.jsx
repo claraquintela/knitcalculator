@@ -3,7 +3,7 @@ import "./login.css";
 import { connect } from "react-redux";
 import { Link, Redirect } from "react-router-dom";
 
-class UnconnectedLogin extends Component {
+class UnconnectedLoginForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -41,12 +41,8 @@ class UnconnectedLogin extends Component {
       type: "login-success",
       username: this.state.username
     });
-
-    alert("login successful");
-    this.setState({ redirect: true });
   };
   render = () => {
-    if (this.state.redirect) return <Redirect to="/UserPage" />;
     return (
       <div className="background">
         <div className="login-page">
@@ -76,5 +72,5 @@ class UnconnectedLogin extends Component {
     );
   };
 }
-let Login = connect()(UnconnectedLogin);
-export default Login;
+let LoginForm = connect()(UnconnectedLoginForm);
+export default LoginForm;

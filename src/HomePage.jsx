@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link, Redirect } from "react-router-dom";
-import "./userpage.css";
+import "./homepage.css";
+import UserBar from "./UserBar.jsx";
+import UserIndex from "./UserIndex.jsx";
 
 class UnconnectedUserPage extends Component {
   constructor(props) {
@@ -15,7 +17,11 @@ class UnconnectedUserPage extends Component {
   render = () => {
     return (
       <div className="box">
-        <div></div>
+        <div className="container">
+          <UserBar />
+          <div className="horizontalbar"></div>
+          <UserIndex />
+        </div>
       </div>
     );
   };

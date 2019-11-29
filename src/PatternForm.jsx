@@ -1,12 +1,11 @@
 import React, { Component } from "react";
-import { connect } from "react-redux";
 import { Link, Redirect } from "react-router-dom";
-// import "./userpage.css";
 
-class UnconnectedPattern extends Component {
+class UnconnectedPatternForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      title: "",
       stitches: 0,
       rows: 0,
       footcirc: 0,
@@ -27,32 +26,16 @@ class UnconnectedPattern extends Component {
   };
   handleSubmitPattern = async evt => {
     evt.preventDefault();
-
-    let data = new FormData();
-    data.append("stitches", this.state.stitches);
-    data.append("rows", this.state.rows);
-    data.append("footcirc", this.state.footcirc);
-    data.append("footlength", this.state.footlength);
-    let response = await fetch("/UserData", {
-      method: "POST",
-      body: data,
-      credentials: "include"
+    return this.props.dispatch({
+      type: "data-submitted",
+      data: {
+        title: this.state.title,
+        stitches: this.state.stitches,
+        rows: this.state.rows,
+        footcirc: this.state.footcirc,
+        footlength: this.state.length
+      }
     });
-    let responseBody = await response.text();
-
-    let body = JSON.parse(responseBody);
-
-    if (!body.success) {
-      alert("login failed");
-      return;
-    }
-    this.props.dispatch({
-      type: "login-success",
-      username: this.state.username
-    });
-
-    alert("login successful");
-    this.setState({ redirect: true });
   };
   render = () => {
     return (
@@ -86,4 +69,4 @@ class UnconnectedPattern extends Component {
   };
 }
 // let UserPage = connect()(UnconnectedUserPage);
-export default UnconnectedPattern;
+export default UnconnectedPatternForm;

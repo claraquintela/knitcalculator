@@ -11,6 +11,16 @@
 
 }
 
+.checkbox {
+    display: flex;
+    flex-direction: row;
+}
+
+.subscribe {
+    width: 2400px;
+    margin-right: 100px;
+}
+
 .background {
     background-image: url("http://claraquintela.com/wp-content/uploads/2019/11/WhatsApp-Image-2019-11-27-at-11.48.07.jpeg");
     background-repeat: no-repeat;
