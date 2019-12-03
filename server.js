@@ -125,6 +125,22 @@ let generateId = () => {
     return "" + Math.floor(Math.random() * 100000000);
 };
 
+app.post("/pattern", upload.none(), (req, res) => {
+    let data = req.body.data;
+    let username = req.body.username;
+    dbo.collection("patterns").insertOne({
+        username: username,
+        data: data,
+
+    });
+    res.send(
+        JSON.stringify({
+            success: true
+        })
+    );
+    return;
+});
+
 
 // Your endpoints go before this line
 

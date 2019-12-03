@@ -5,15 +5,7 @@ import UserBar from "./UserBar.jsx";
 import UserIndex from "./UserIndex.jsx";
 import NewPattern from "./NewPattern.jsx";
 
-class UnconnectedUserPage extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      username: "",
-      password: "",
-      redirect: false
-    };
-  }
+class UnconnectePatternPage extends Component {
   render = () => {
     return (
       <div className="box">
@@ -22,10 +14,10 @@ class UnconnectedUserPage extends Component {
           <div className="horizontalbar"></div>
           <div className="homepage">
             <div>
-              <UserIndex />
+              <PatternForm />
             </div>
             <div className="whitepage">
-              <NewPattern />
+              <Pattern />
             </div>
           </div>
         </div>
@@ -33,5 +25,5 @@ class UnconnectedUserPage extends Component {
     );
   };
 }
-let UserPage = connect()(UnconnectedUserPage);
-export default UserPage;
+let PatternPage = connect()(UnconnectedPatternPage);
+export default PatternPage;

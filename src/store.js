@@ -31,9 +31,9 @@ let store = createStore(
     reducer, {
         data: {
             title: "",
-            stitches: 0,
+            stitches: 3.2,
             rows: 0,
-            footcirc: 0,
+            footcirc: 20,
             footlength: 0
         },
         users: [],

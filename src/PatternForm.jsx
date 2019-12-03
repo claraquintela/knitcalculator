@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link, Redirect } from "react-router-dom";
+import "./patternform.css";
 
 class UnconnectedPatternForm extends Component {
   constructor(props) {
@@ -12,6 +12,10 @@ class UnconnectedPatternForm extends Component {
       footlength: 0
     };
   }
+
+  handleTitle = event => {
+    this.setState({ Title: parseInt(event.target.value) });
+  };
   handleStitches = event => {
     this.setState({ stitches: parseInt(event.target.value) });
   };
@@ -43,12 +47,17 @@ class UnconnectedPatternForm extends Component {
         <form className="pattern-form" onSubmit={this.handleSubmitPattern}>
           <input
             type="text"
-            placeholder="Sts in 10cm"
+            placeholder="Whose socks are these?"
+            onChange={this.handleTitle}
+          />
+          <input
+            type="text"
+            placeholder="Sts in 1cm"
             onChange={this.handleStitches}
           />
           <input
             type="text"
-            placeholder="Rows in 10cm"
+            placeholder="Rows in 1cm"
             onChange={this.handleRows}
           />
 

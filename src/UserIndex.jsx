@@ -12,11 +12,6 @@ class UnconnectedUserIndex extends Component {
             Your patterns:
             <li></li>
           </h3>
-          <input
-            type="submit"
-            className="buttonNew"
-            value="Start a new pattern"
-          />
         </div>
       </div>
     );
