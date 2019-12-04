@@ -14,7 +14,8 @@ let reducer = (state, action) => {
         return {
             ...state,
             loggedIn: true,
-            username: action.username
+            username: action.username,
+            patterns: action.patterns
         };
     }
 
@@ -31,13 +32,14 @@ let store = createStore(
     reducer, {
         data: {
             title: "",
-            stitches: 3.2,
+            stitches: 0,
             rows: 0,
-            footcirc: 20,
+            footcirc: 0,
             footlength: 0
         },
         users: [],
         username: "",
+        patterns: [],
         loggedIn: false,
         hasSearched: false
     },

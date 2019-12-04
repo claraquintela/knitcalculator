@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link, Redirect } from "react-router-dom";
+import { connect } from "react-redux";
 import "./userindex.css";
 
 class UnconnectedUserIndex extends Component {
@@ -10,12 +10,20 @@ class UnconnectedUserIndex extends Component {
           <h3 className="patternList">
             {" "}
             Your patterns:
-            <li></li>
+            {this.props.patterns.map((p, i) => {
+              return <li key={i}>{p.title}</li>;
+            })}
           </h3>
         </div>
       </div>
     );
   };
 }
+let mapStateToProps = state => {
+  return {
+    patterns: state.patterns
+  };
+};
 
-export default UnconnectedUserIndex;
+let UserIndex = connect(mapStateToProps)(UnconnectedUserIndex);
+export default UserIndex;

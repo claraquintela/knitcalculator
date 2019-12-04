@@ -93,7 +93,9 @@ app.post("/login", upload.none(), (req, res) => {
                 );
                 return;
             }
+
             if (user === null) {
+                console.log("1")
                 res.send(
                     JSON.stringify({
                         success: false
@@ -101,22 +103,35 @@ app.post("/login", upload.none(), (req, res) => {
                 );
                 return;
             }
+
             if (user.password === password) {
-                let sessionId = generateId();
-                sessions[sessionId] = name;
-                res.cookie("sid", sessionId);
+
+                dbo.collection("patterns").find({
+                    username: name
+                }).toArray((err, patterns) => {
+                    patterns = patterns.map(p => p.data)
+                    let sessionId = generateId();
+                    sessions[sessionId] = name;
+                    res.cookie("sid", sessionId);
+                    console.log("2")
+                    res.send(
+                        JSON.stringify({
+                            success: true,
+                            patterns: patterns
+                        })
+                    );
+                    return;
+                })
+
+
+            } else {
                 res.send(
                     JSON.stringify({
-                        success: true
+                        success: false
                     })
                 );
-                return;
             }
-            res.send(
-                JSON.stringify({
-                    success: false
-                })
-            );
+
         }
     );
 });
@@ -126,7 +141,8 @@ let generateId = () => {
 };
 
 app.post("/pattern", upload.none(), (req, res) => {
-    let data = req.body.data;
+    console.log("pattern save working?")
+    let data = JSON.parse(req.body.data);
     let username = req.body.username;
     dbo.collection("patterns").insertOne({
         username: username,

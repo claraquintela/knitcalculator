@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-// import "./userpage.css";
 
 class UnconnectedSockPattern extends Component {
   stitchesCalculation = () => {
@@ -14,59 +13,55 @@ class UnconnectedSockPattern extends Component {
     return stitchNumber;
   };
 
-  rowsCalculation = () => {
-    let rowNumber = Math.round(
-      this.props.data.rows * this.props.data.footlength
-    );
-    if (stitchNumber % 2 !== 0) {
-      return stitchNumber + 1;
-    }
-    return stitchNumber;
-  };
+  // rowsCalculation = () => {
+  //   let rowNumber = Math.round(
+  //     this.props.data.rows * this.props.data.footlength
+  //   );
+  //   if (stitchNumber % 2 !== 0) {
+  //     return stitchNumber + 1;
+  //   }
+  //   return stitchNumber;
+  // };
 
   handleSavePattern = async evt => {
     evt.preventDefault();
 
     let data = new FormData();
-    data.append("data", this.props.data);
-    data.append("pattern", this.state.pattern);
+    data.append("data", JSON.stringify(this.props.data));
+    data.append("username", this.props.username);
     let response = await fetch("/pattern", {
       method: "POST",
       body: data,
       credentials: "include"
     });
     let responseBody = await response.text();
+    console.log(responseBody);
 
     let body = JSON.parse(responseBody);
+    console.log(body);
 
     if (!body.success) {
-      alert("login failed");
+      alert("your pattern was not saved");
       return;
     }
-    this.props.dispatch({
-      type: "login-success",
-      username: this.state.username
-    });
-
-    alert("login successful");
-    this.setState({ redirect: true });
+    alert("pattern saved");
   };
   render = () => {
     return (
-      <div>
+      <div className="patterntxt">
         <form onSubmit={this.handleSavePattern}>
           <div>
-            <div>Directions</div>
-            <div>CUFF</div>
+            <h4>Directions</h4>
+            <div className="subtitle">CUFF</div>
             <div>
               Cast on {this.stitchesCalculation()} sts and join to work in
               rounds. Put a removable marker to tell you where is the
               beginning/end of the round. Work in k2-p2 (or k1-p1) ribbing for
               3cm (or as much as desired).
             </div>
-            <div>LEG</div>
+            <div className="subtitle">LEG</div>
             <div>K next 10cm (or as much as desired).</div>
-            <div> HEEL </div>
+            <div className="subtitle"> HEEL </div>
             <div>Heel flap </div>
             <div>Next round, put half of the stitches on hold. </div>
             <div>Row1: *sl 1 purlwise wyib, k1* </div>
@@ -88,19 +83,20 @@ class UnconnectedSockPattern extends Component {
               Turn.{" "}
             </div>
             <div>
-              Repeatvthese 2 rows until you have only the central stitches (1/3
+              Repeate these 2 rows until you have only the central stitches (1/3
               of heel flap stitches).
             </div>
-            <div>GUSSET</div>
+            <div className="subtitle">GUSSET</div>
             <div>
               {" "}
-              Turn you sock 90º. Pick up and knit one st every other row. Place
-              a marker. Then, knit the instep sts. Place another marker. Turn
-              your sock again, pick up and knit one st every other row. K up to
-              3 sts before the first marker. This is gonna be the beginning of
-              your round. NOTE that now you have more stitches than when you
-              started knitting. The gusset is nothing more than a adjustment in
-              the number of stitches to the shape of your feet.{" "}
+              Turn you sock 90º. Pick up and knit one st every other row (total
+              ={Math.round(this.stitchesCalculation() / 4)} ). Place a marker.
+              Then, knit the instep sts. Place another marker. Turn your sock
+              again, pick up and knit one st every other row. K up to 3 sts
+              before the first marker. This is gonna be the beginning of your
+              round. NOTE that now you have more stitches than when you started
+              knitting. The gusset is nothing more than a adjustment in the
+              number of stitches to the shape of your feet.{" "}
             </div>
             <div>
               round 1: k2tog, k1, sl m, k up to the marker, sl m, k1, ssk, k up
@@ -110,11 +106,11 @@ class UnconnectedSockPattern extends Component {
               round 2: k. Repeat these 2 rounds until you have the same amount
               of sts you had in the beginning.
             </div>
-            <div>FEET</div>
+            <div className="subtitle">FEET</div>
             <div>
               K next rounds until the socks reach the bottom of your toes.{" "}
             </div>
-            <div>DECREASE FOR TOES</div>
+            <div className="subtitle">DECREASE FOR TOES</div>
             <div>
               Decrease round (starting 3 sts from the first marker): k2tog, k1,
               sl m, k1, ssk, k up 3 sts to the second marker, k2tog, k1, sl m,
@@ -125,7 +121,7 @@ class UnconnectedSockPattern extends Component {
               Transfer your stitches to 2 dps and close with grafting st.
             </div>
           </div>
-          <button>Save</button>
+          <button className="saveButton">Save</button>
         </form>
       </div>
     );
@@ -133,7 +129,8 @@ class UnconnectedSockPattern extends Component {
 }
 let mapStateToProps = state => {
   return {
-    data: state.data
+    data: state.data,
+    username: state.username
   };
 };
 

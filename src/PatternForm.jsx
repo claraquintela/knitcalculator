@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import "./patternform.css";
 
 class UnconnectedPatternForm extends Component {
@@ -14,7 +15,7 @@ class UnconnectedPatternForm extends Component {
   }
 
   handleTitle = event => {
-    this.setState({ Title: parseInt(event.target.value) });
+    this.setState({ title: event.target.value });
   };
   handleStitches = event => {
     this.setState({ stitches: parseInt(event.target.value) });
@@ -30,6 +31,16 @@ class UnconnectedPatternForm extends Component {
   };
   handleSubmitPattern = async evt => {
     evt.preventDefault();
+    if (
+      this.state.title === "" ||
+      this.state.stitches <= 0 ||
+      this.state.rows <= 0 ||
+      this.state.footcirc <= 0 ||
+      this.state.footlength <= 0
+    ) {
+      alert("you're missing something");
+      return;
+    }
     return this.props.dispatch({
       type: "data-submitted",
       data: {
@@ -71,11 +82,11 @@ class UnconnectedPatternForm extends Component {
             placeholder="Foot length"
             onChange={this.handleFootlength}
           />
-          <button>login</button>
+          <button>Generate pattern</button>
         </form>
       </div>
     );
   };
 }
-// let UserPage = connect()(UnconnectedUserPage);
-export default UnconnectedPatternForm;
+let PatternForm = connect()(UnconnectedPatternForm);
+export default PatternForm;
