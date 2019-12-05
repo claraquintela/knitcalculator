@@ -2,22 +2,18 @@
     background-image: url(http://claraquintela.com/wp-content/uploads/2019/11/page2_background.png);
     background-repeat: no-repeat;
     background-size: cover;
-    margin: 10px;
+
     padding: 4% 0%;
-    height: 80vh;
+    height: 100vh;
 }
 
 .homepage {
     display: flex;
     justify-content: space-between;
-    flex-direction: row;
     width: 100%;
 }
 
-.whitepage {
-    align-items: right;
 
-}
 
 .container {
     margin-left: 100px;

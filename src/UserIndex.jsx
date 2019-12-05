@@ -1,8 +1,12 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { withRouter, Link } from "react-router-dom";
 import "./userindex.css";
 
 class UnconnectedUserIndex extends Component {
+  downloadPatternById = id => {
+    this.props.patterns.filter(id === patterns._id);
+  };
   render = () => {
     return (
       <div className="grid">
@@ -11,7 +15,11 @@ class UnconnectedUserIndex extends Component {
             {" "}
             Your patterns:
             {this.props.patterns.map((p, i) => {
-              return <li key={i}>{p.title}</li>;
+              return (
+                <Link to={"/patterns/" + p._id}>
+                  <li key={i}>{p.data.type + " for " + p.data.title}</li>
+                </Link>
+              );
             })}
           </h3>
         </div>

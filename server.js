@@ -95,7 +95,6 @@ app.post("/login", upload.none(), (req, res) => {
             }
 
             if (user === null) {
-                console.log("1")
                 res.send(
                     JSON.stringify({
                         success: false
@@ -109,11 +108,9 @@ app.post("/login", upload.none(), (req, res) => {
                 dbo.collection("patterns").find({
                     username: name
                 }).toArray((err, patterns) => {
-                    patterns = patterns.map(p => p.data)
                     let sessionId = generateId();
                     sessions[sessionId] = name;
                     res.cookie("sid", sessionId);
-                    console.log("2")
                     res.send(
                         JSON.stringify({
                             success: true,

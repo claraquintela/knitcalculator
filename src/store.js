@@ -25,24 +25,32 @@ let reducer = (state, action) => {
             data: action.data,
         };
     }
+    if (action.type === "reset-data") {
+        return {
+            ...state,
+            data: initialState.data,
+        };
+    }
     return state
 }
 
-let store = createStore(
-    reducer, {
-        data: {
-            title: "",
-            stitches: 0,
-            rows: 0,
-            footcirc: 0,
-            footlength: 0
-        },
-        users: [],
-        username: "",
-        patterns: [],
-        loggedIn: false,
-        hasSearched: false
+let initialState = {
+    data: {
+        title: undefined,
+        stitches: 0,
+        rows: 0,
+        footcirc: 0,
+        footlength: 0
     },
+    users: [],
+    username: "",
+    patterns: [],
+    loggedIn: false,
+    hasSearched: false
+}
+
+let store = createStore(
+    reducer, initialState,
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
 export default store;

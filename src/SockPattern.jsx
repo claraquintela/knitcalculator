@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import ReactToPrint from "react-to-print";
+import "./sockpatternpage.css";
 
 class UnconnectedSockPattern extends Component {
   stitchesCalculation = () => {
@@ -25,7 +27,6 @@ class UnconnectedSockPattern extends Component {
 
   handleSavePattern = async evt => {
     evt.preventDefault();
-
     let data = new FormData();
     data.append("data", JSON.stringify(this.props.data));
     data.append("username", this.props.username);
@@ -46,11 +47,13 @@ class UnconnectedSockPattern extends Component {
     }
     alert("pattern saved");
   };
+
   render = () => {
     return (
       <div className="patterntxt">
         <form onSubmit={this.handleSavePattern}>
           <div>
+            <h3>{this.props.data.type + " for " + this.props.data.title}</h3>
             <h4>Directions</h4>
             <div className="subtitle">CUFF</div>
             <div>
@@ -121,12 +124,20 @@ class UnconnectedSockPattern extends Component {
               Transfer your stitches to 2 dps and close with grafting st.
             </div>
           </div>
-          <button className="saveButton">Save</button>
+          <div className="twobuttons">
+            {" "}
+            <button className="saveButton">Save</button>{" "}
+            <ReactToPrint
+              trigger={this.props.trigger}
+              content={this.props.content}
+            />{" "}
+          </div>
         </form>
       </div>
     );
   };
 }
+
 let mapStateToProps = state => {
   return {
     data: state.data,

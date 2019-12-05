@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./login.css";
 import { connect } from "react-redux";
-import { Link, Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 class UnconnectedLoginForm extends Component {
   constructor(props) {

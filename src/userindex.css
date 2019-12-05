@@ -2,7 +2,7 @@
     font-family: "Roboto", sans-serif;
     text-transform: uppercase;
     outline: 0;
-    background: black;
+    background: #cc9966;
     width: 200px;
     border: 0;
     padding: 15px;
@@ -14,9 +14,15 @@
 
 }
 
+.buttonNew:hover,
+.buttonNew:active,
+.buttonNew:focus {
+    background: black;
+}
+
 .grid {
 
-    margin-left: 100px;
+    margin-right: 100px;
     margin-top: 100px;
 
 }

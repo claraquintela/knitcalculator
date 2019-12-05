@@ -21,12 +21,8 @@ class UnconnectedUserPage extends Component {
           <UserBar />
           <div className="horizontalbar"></div>
           <div className="homepage">
-            <div>
-              <UserIndex />
-            </div>
-            <div className="whitepage">
-              <NewPattern />
-            </div>
+            <UserIndex />
+            <NewPattern className="whitepage" />
           </div>
         </div>
       </div>

@@ -1,5 +1,97 @@
 .containertxt {
     display: flex;
+    justify-content: space-evenly;
+    width: 100vw;
+}
+
+.whitepage {
+    font-family: "Roboto", sans-serif;
+    font-size: small;
+    width: 560px;
+    margin-right: 150px;
+}
+
+.boxintern {
+    background-image: url(http://claraquintela.com/wp-content/uploads/2019/11/page2_background.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 4% 0%;
+    height: 100vh;
+}
+
+.homepage {
+    display: flex;
     justify-content: space-between;
-    width: 500px
+    flex-direction: row;
+    width: 100%;
+}
+
+
+.container {
+    margin-left: 100px;
+}
+
+.title {
+
+    font-family: serif;
+}
+
+.subtitle {
+    width: 400px;
+}
+
+.horizontalbar {
+
+    border: 1px solid black;
+    background-color: black;
+    width: 400px;
+
+}
+
+.saveButton,
+.printbutton {
+    font-family: "Roboto", sans-serif;
+    text-transform: uppercase;
+    outline: 0;
+    background: #cc9966;
+    width: 100px;
+    align-items: center;
+    margin-top: 10px;
+    border: 0;
+    padding: 15px;
+    color: #FFFFFF;
+    font-size: 14px;
+    -webkit-transition: all 0.3 ease;
+    transition: all 0.3 ease;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.saveButton:hover,
+.saveButton:active,
+.saveButton:focus {
+    background: black;
+}
+
+.printbutton:hover,
+.printbutton:active,
+.printbutton:focus {
+    background: black;
+}
+
+.printbutton {
+    display: flex;
+    width: 70px
+}
+
+.linkhome {
+    font-family: "Roboto", sans-serif;
+    color: black;
+    margin-left: 550px;
+}
+
+.twobuttons {
+    display: flex;
+    justify-content: space-around;
+
 }
