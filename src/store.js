@@ -31,6 +31,13 @@ let reducer = (state, action) => {
             data: initialState.data,
         };
     }
+
+    if (action.type === "update-patterns") {
+        return {
+            ...state,
+            patterns: action.patterns,
+        };
+    }
     return state
 }
 

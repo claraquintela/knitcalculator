@@ -41,7 +41,11 @@ class UnconnectedSockPatternForm extends Component {
     this.setState({ footlength: Number(event.target.value) });
   };
   handleSubmitPattern = async evt => {
-    evt.preventDefault();
+    console.log("submitting pattern");
+    if (evt !== undefined) {
+      evt.preventDefault();
+    }
+
     if (
       this.state.title === "" ||
       this.state.stitches <= 0 ||
@@ -108,6 +112,7 @@ class UnconnectedSockPatternForm extends Component {
     if (this.state.title === "") {
       return <div>loading...</div>;
     }
+    this.handleSubmitPattern();
     return (
       <div>
         <div className="warning">

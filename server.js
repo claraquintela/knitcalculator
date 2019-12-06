@@ -154,6 +154,34 @@ app.post("/pattern", upload.none(), (req, res) => {
     return;
 });
 
+app.post("/getPattern", upload.none(), (req, res) => {
+    let username = req.body.username;
+    dbo.collection("patterns").find({
+        username: username
+    }).toArray((err, patterns) => {
+        if (err) {
+            console.log("error")
+            res.send(JSON.stringify({
+                success: false
+            }))
+        }
+        if (patterns === null) {
+            res.send(
+                JSON.stringify({
+                    success: false
+                })
+            );
+            return;
+        }
+        res.send(
+            JSON.stringify({
+                success: true,
+                patterns: patterns
+            })
+        );
+        return;
+    });
+})
 
 // Your endpoints go before this line
 
