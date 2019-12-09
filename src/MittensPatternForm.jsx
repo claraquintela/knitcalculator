@@ -2,16 +2,15 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import "./patternform.css";
 
-class UnconnectedSockPatternForm extends Component {
+class UnconnectedMittensPatternForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      type: "Socks",
+      type: "Mittens",
       title: "",
       stitches: 0,
       rows: 0,
-      footcirc: 0,
-      footlength: 0,
+      handcirc: 0,
       chosenPattern: undefined
     };
   }
@@ -21,7 +20,7 @@ class UnconnectedSockPatternForm extends Component {
       let chosenPattern = this.props.patterns.find(pattern => {
         return pattern._id === this.props.id;
       });
-      this.setState({ ...chosenPattern.dataSock });
+      this.setState({ ...chosenPattern.dataMittens });
     }
   };
 
@@ -34,12 +33,10 @@ class UnconnectedSockPatternForm extends Component {
   handleRows = event => {
     this.setState({ rows: Number(event.target.value) });
   };
-  handleFootcirc = event => {
-    this.setState({ footcirc: Number(event.target.value) });
+  handleHandcirc = event => {
+    this.setState({ handcirc: Number(event.target.value) });
   };
-  handleFootlength = event => {
-    this.setState({ footlength: Number(event.target.value) });
-  };
+
   handleSubmitPattern = async evt => {
     console.log("submitting pattern");
     if (evt !== undefined) {
@@ -50,21 +47,19 @@ class UnconnectedSockPatternForm extends Component {
       this.state.title === "" ||
       this.state.stitches <= 0 ||
       this.state.rows <= 0 ||
-      this.state.footcirc <= 0 ||
-      this.state.footlength <= 0
+      this.state.handcirc <= 0
     ) {
       alert("you're missing something");
       return;
     }
     return this.props.dispatch({
-      type: "dataSock-submitted",
-      dataSock: {
+      type: "dataMittens-submitted",
+      dataMittens: {
         type: this.state.type,
         title: this.state.title,
         stitches: this.state.stitches,
         rows: this.state.rows,
-        footcirc: this.state.footcirc,
-        footlength: this.state.footlength
+        handcirc: this.state.handcirc
       }
     });
   };
@@ -80,7 +75,7 @@ class UnconnectedSockPatternForm extends Component {
           <form className="pattern-form" onSubmit={this.handleSubmitPattern}>
             <input
               type="text"
-              placeholder="Whose socks are these?"
+              placeholder="Whose mittens are these?"
               onChange={this.handleTitle}
             />
             <input
@@ -96,14 +91,10 @@ class UnconnectedSockPatternForm extends Component {
 
             <input
               type="text"
-              placeholder="Foot circumference"
-              onChange={this.handleFootcirc}
+              placeholder="Hand circumference"
+              onChange={this.handleHandcirc}
             />
-            <input
-              type="text"
-              placeholder="Foot length"
-              onChange={this.handleFootlength}
-            />
+
             <button>Generate pattern</button>
           </form>
         </div>
@@ -123,9 +114,9 @@ class UnconnectedSockPatternForm extends Component {
           <input type="text" defaultValue={this.state.title} />
           <input type="text" defaultValue={this.state.stitches} />
           <input type="text" defaultValue={this.state.rows} />
-          <input type="text" defaultValue={this.state.footcirc} />
+          <input type="text" defaultValue={this.state.handcirc} />
 
-          <input type="text" defaultValue={this.state.footlength} />
+          <input type="text" defaultValue={this.state.handlength} />
           <button>Generate pattern</button>
         </form>
       </div>
@@ -139,5 +130,7 @@ let mapsStateToProps = state => {
     username: state.username
   };
 };
-let SockPatternForm = connect(mapsStateToProps)(UnconnectedSockPatternForm);
-export default SockPatternForm;
+let MittensPatternForm = connect(mapsStateToProps)(
+  UnconnectedMittensPatternForm
+);
+export default MittensPatternForm;

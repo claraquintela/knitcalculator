@@ -20,10 +20,22 @@ class UnconnectedNewPattern extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    alert(`You chose ${this.state.type} pattern.`);
+
     if (this.state.type === "socks") {
       this.props.history.push("/SockPatternPage");
+      alert(`You chose ${this.state.type} pattern.`);
+      return;
     }
+    if (this.state.type === "mittens") {
+      this.props.history.push("/MittensPatternPage");
+      alert(`You chose ${this.state.type} pattern.`);
+      return;
+    }
+    if (this.state.type === "babyblanket") {
+      this.props.history.push("/BabyBlanketPatternPage");
+      return;
+    } else alert(`please, pick a pattern.`);
+    return;
   };
 
   render = () => {
@@ -42,13 +54,22 @@ class UnconnectedNewPattern extends Component {
             Socks{" "}
           </div>
           <div>
-            {/* <input
+            <input
               type="radio"
               value="mittens"
               checked={this.state.type === "mittens"}
               onChange={this.handleChange}
-            />{" "} */}
-            Mittens (coming soon){" "}
+            />{" "}
+            Mittens{" "}
+          </div>{" "}
+          <div>
+            <input
+              type="radio"
+              value="babyblanket"
+              checked={this.state.type === "babyblanket"}
+              onChange={this.handleChange}
+            />{" "}
+            Simple Baby Blanket{" "}
           </div>{" "}
           <input
             type="submit"

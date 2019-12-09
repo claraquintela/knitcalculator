@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import "./sockpatternpage.css";
-import SockPatternForm from "./SockPatternForm.jsx";
-import SockPattern from "./SockPattern.jsx";
+import MittensPatternForm from "./MittensPatternForm.jsx";
+import MittensPattern from "./MittensPattern.jsx";
 import { connect } from "react-redux";
 
 import { Link } from "react-router-dom";
 
-class UnconnectedSockPatternPage extends Component {
+class UnconnectedMittensPatternPage extends Component {
   componentDidMount = () => {
     return this.props.dispatch({
       type: "reset-data"
@@ -25,17 +25,19 @@ class UnconnectedSockPatternPage extends Component {
         </Link>
         <div className="container">
           <h3>
-            {this.props.dataSock.title !== undefined
-              ? this.props.dataSock.type + " for " + this.props.dataSock.title
-              : "Socks"}
+            {this.props.dataMittens.title !== undefined
+              ? this.props.dataMittens.type +
+                " for " +
+                this.props.dataMittens.title
+              : "Mittens"}
           </h3>
           <div className="horizontalbar"></div>
           <div className="containertxt">
-            <SockPatternForm id={this.props.id} />
+            <MittensPatternForm id={this.props.id} />
             <div className="whitepage">
-              {this.props.dataSock.title !== undefined ? (
+              {this.props.dataMittens.title !== undefined ? (
                 <div>
-                  <SockPattern
+                  <MittensPattern
                     ref={el => (this.componentRef = el)}
                     id={this.props.id}
                     trigger={() => (
@@ -56,10 +58,12 @@ class UnconnectedSockPatternPage extends Component {
 }
 let mapStateToProps = state => {
   return {
-    dataSock: state.dataSock,
+    dataMittens: state.dataMittens,
     patterns: state.patterns,
     username: state.username
   };
 };
-let SockPatternPage = connect(mapStateToProps)(UnconnectedSockPatternPage);
-export default SockPatternPage;
+let MittensPatternPage = connect(mapStateToProps)(
+  UnconnectedMittensPatternPage
+);
+export default MittensPatternPage;

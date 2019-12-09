@@ -1,12 +1,11 @@
 import React, { Component } from "react";
 import "./sockpatternpage.css";
-import SockPatternForm from "./SockPatternForm.jsx";
-import SockPattern from "./SockPattern.jsx";
+import BabyBlanketPatternForm from "./BabyBlanketPatternForm.jsx";
+import BabyBlanketPattern from "./BabyBlanketPattern.jsx";
 import { connect } from "react-redux";
-
 import { Link } from "react-router-dom";
 
-class UnconnectedSockPatternPage extends Component {
+class UnconnectedBabyBlanketPatternPage extends Component {
   componentDidMount = () => {
     return this.props.dispatch({
       type: "reset-data"
@@ -25,17 +24,19 @@ class UnconnectedSockPatternPage extends Component {
         </Link>
         <div className="container">
           <h3>
-            {this.props.dataSock.title !== undefined
-              ? this.props.dataSock.type + " for " + this.props.dataSock.title
-              : "Socks"}
+            {this.props.dataBabyBlanket.title !== undefined
+              ? this.props.dataBabyBlanket.type +
+                " for " +
+                this.props.dataBabyBlanket.title
+              : "Baby Blanket"}
           </h3>
           <div className="horizontalbar"></div>
           <div className="containertxt">
-            <SockPatternForm id={this.props.id} />
+            <BabyBlanketPatternForm id={this.props.id} />
             <div className="whitepage">
-              {this.props.dataSock.title !== undefined ? (
+              {this.props.dataBabyBlanket.title !== undefined ? (
                 <div>
-                  <SockPattern
+                  <BabyBlanketPattern
                     ref={el => (this.componentRef = el)}
                     id={this.props.id}
                     trigger={() => (
@@ -56,10 +57,12 @@ class UnconnectedSockPatternPage extends Component {
 }
 let mapStateToProps = state => {
   return {
-    dataSock: state.dataSock,
+    dataBabyBlanket: state.dataBabyBlanket,
     patterns: state.patterns,
     username: state.username
   };
 };
-let SockPatternPage = connect(mapStateToProps)(UnconnectedSockPatternPage);
-export default SockPatternPage;
+let BabyBlanketPatternPage = connect(mapStateToProps)(
+  UnconnectedBabyBlanketPatternPage
+);
+export default BabyBlanketPatternPage;

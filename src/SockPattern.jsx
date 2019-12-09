@@ -5,9 +5,8 @@ import "./sockpatternpage.css";
 
 class UnconnectedSockPattern extends Component {
   stitchesCalculation = () => {
-    console.log(this.props.data.stitches, this.props.data.footcirc);
     let stitchNumber = Math.round(
-      this.props.data.stitches * this.props.data.footcirc * 0.9
+      this.props.dataSock.stitches * this.props.dataSock.footcirc * 0.9
     );
     if (stitchNumber % 2 !== 0) {
       return stitchNumber + 1;
@@ -28,7 +27,7 @@ class UnconnectedSockPattern extends Component {
   handleSavePattern = async evt => {
     evt.preventDefault();
     let data = new FormData();
-    data.append("data", JSON.stringify(this.props.data));
+    data.append("dataSock", JSON.stringify(this.props.dataSock));
     data.append("username", this.props.username);
     let response = await fetch("/pattern", {
       method: "POST",
@@ -53,7 +52,9 @@ class UnconnectedSockPattern extends Component {
       <div className="patterntxt">
         <form onSubmit={this.handleSavePattern}>
           <div>
-            <h3>{this.props.data.type + " for " + this.props.data.title}</h3>
+            <h3>
+              {this.props.dataSock.type + " for " + this.props.dataSock.title}
+            </h3>
             <h4>Directions</h4>
             <div className="subtitle">CUFF</div>
             <div>
@@ -140,7 +141,7 @@ class UnconnectedSockPattern extends Component {
 
 let mapStateToProps = state => {
   return {
-    data: state.data,
+    dataSock: state.dataSock,
     username: state.username
   };
 };

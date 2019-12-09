@@ -30,11 +30,35 @@ class UnconnectedUserIndex extends Component {
             {" "}
             Your patterns:
             {this.props.patterns.map((p, i) => {
-              return (
-                <Link to={"/patterns/" + p._id}>
-                  <li key={i}>{p.data.type + " for " + p.data.title}</li>
-                </Link>
-              );
+              if (p.dataSock) {
+                return (
+                  <Link to={"/patterns/" + p._id + "---sock"}>
+                    <li key={i}>
+                      {p.dataSock.type + " for " + p.dataSock.title}
+                    </li>
+                  </Link>
+                );
+              }
+              if (p.dataMittens) {
+                return (
+                  <Link to={"/patterns/" + p._id + "---mittens"}>
+                    <li key={i}>
+                      {p.dataMittens.type + " for " + p.dataMittens.title}
+                    </li>
+                  </Link>
+                );
+              }
+              if (p.dataBabyBlanket) {
+                return (
+                  <Link to={"/patterns/" + p._id + "---babyblanket"}>
+                    <li key={i}>
+                      {p.dataBabyBlanket.type +
+                        " for " +
+                        p.dataBabyBlanket.title}
+                    </li>
+                  </Link>
+                );
+              }
             })}
           </h3>
         </div>

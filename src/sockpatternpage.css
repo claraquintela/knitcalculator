@@ -1,7 +1,7 @@
 .containertxt {
     display: flex;
-    justify-content: space-evenly;
-    width: 100vw;
+    justify-content: space-between;
+    width: 100%;
 }
 
 .whitepage {
@@ -28,6 +28,7 @@
 
 
 .container {
+
     margin-left: 100px;
 }
 
@@ -93,5 +94,23 @@
 .twobuttons {
     display: flex;
     justify-content: space-around;
+
+}
+
+.subtitle {
+    font-weight: bold;
+}
+
+.patterntxt {
+    max-height: fit-content;
+    width: 680px;
+    padding: 10px;
+    background-color: white;
+    -webkit-box-shadow: 5px 5px 13px 1px rgba(0, 0, 0, 0.32);
+    box-shadow: 5px 5px 13px 1px rgba(0, 0, 0, 0.32);
+    opacity: 90%;
+    margin: 10px;
+    margin-left: 175px;
+    margin-right: 25px;
 
 }

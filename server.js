@@ -139,13 +139,30 @@ let generateId = () => {
 
 app.post("/pattern", upload.none(), (req, res) => {
     console.log("pattern save working?")
-    let data = JSON.parse(req.body.data);
-    let username = req.body.username;
-    dbo.collection("patterns").insertOne({
-        username: username,
-        data: data,
-
-    });
+    if (req.body.dataSock) {
+        let dataSock = JSON.parse(req.body.dataSock);
+        let username = req.body.username;
+        dbo.collection("patterns").insertOne({
+            username: username,
+            dataSock: dataSock,
+        });
+    }
+    if (req.body.dataMittens) {
+        let dataMittens = JSON.parse(req.body.dataMittens);
+        let username = req.body.username;
+        dbo.collection("patterns").insertOne({
+            username: username,
+            dataMittens: dataMittens,
+        });
+    }
+    if (req.body.dataBabyBlanket) {
+        let dataBabyBlanket = JSON.parse(req.body.dataBabyBlanket);
+        let username = req.body.username;
+        dbo.collection("patterns").insertOne({
+            username: username,
+            dataBabyBlanket: dataBabyBlanket,
+        });
+    }
     res.send(
         JSON.stringify({
             success: true

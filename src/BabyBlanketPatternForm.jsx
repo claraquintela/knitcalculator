@@ -2,16 +2,16 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import "./patternform.css";
 
-class UnconnectedSockPatternForm extends Component {
+class UnconnectedBabyBlanketPatternForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      type: "Socks",
+      type: "Baby Blanket",
       title: "",
       stitches: 0,
       rows: 0,
-      footcirc: 0,
-      footlength: 0,
+      width: 0,
+      height: 0,
       chosenPattern: undefined
     };
   }
@@ -21,7 +21,7 @@ class UnconnectedSockPatternForm extends Component {
       let chosenPattern = this.props.patterns.find(pattern => {
         return pattern._id === this.props.id;
       });
-      this.setState({ ...chosenPattern.dataSock });
+      this.setState({ ...chosenPattern.dataBabyBlanket });
     }
   };
 
@@ -34,11 +34,11 @@ class UnconnectedSockPatternForm extends Component {
   handleRows = event => {
     this.setState({ rows: Number(event.target.value) });
   };
-  handleFootcirc = event => {
-    this.setState({ footcirc: Number(event.target.value) });
+  handleWidth = event => {
+    this.setState({ width: Number(event.target.value) });
   };
-  handleFootlength = event => {
-    this.setState({ footlength: Number(event.target.value) });
+  handleHeight = event => {
+    this.setState({ height: Number(event.target.value) });
   };
   handleSubmitPattern = async evt => {
     console.log("submitting pattern");
@@ -50,26 +50,25 @@ class UnconnectedSockPatternForm extends Component {
       this.state.title === "" ||
       this.state.stitches <= 0 ||
       this.state.rows <= 0 ||
-      this.state.footcirc <= 0 ||
-      this.state.footlength <= 0
+      this.state.width <= 0 ||
+      this.state.height <= 0
     ) {
       alert("you're missing something");
       return;
     }
     return this.props.dispatch({
-      type: "dataSock-submitted",
-      dataSock: {
+      type: "dataBabyBlanket-submitted",
+      dataBabyBlanket: {
         type: this.state.type,
         title: this.state.title,
         stitches: this.state.stitches,
         rows: this.state.rows,
-        footcirc: this.state.footcirc,
-        footlength: this.state.footlength
+        width: this.state.width,
+        height: this.state.height
       }
     });
   };
   render = () => {
-    console.log("pattern id", this.props.id);
     if (this.props.id === undefined) {
       return (
         <div>
@@ -80,7 +79,7 @@ class UnconnectedSockPatternForm extends Component {
           <form className="pattern-form" onSubmit={this.handleSubmitPattern}>
             <input
               type="text"
-              placeholder="Whose socks are these?"
+              placeholder="Whose baby blanket are these?"
               onChange={this.handleTitle}
             />
             <input
@@ -96,13 +95,13 @@ class UnconnectedSockPatternForm extends Component {
 
             <input
               type="text"
-              placeholder="Foot circumference"
-              onChange={this.handleFootcirc}
+              placeholder="Width"
+              onChange={this.handleWidth}
             />
             <input
               type="text"
-              placeholder="Foot length"
-              onChange={this.handleFootlength}
+              placeholder="Height"
+              onChange={this.handleHeight}
             />
             <button>Generate pattern</button>
           </form>
@@ -123,9 +122,8 @@ class UnconnectedSockPatternForm extends Component {
           <input type="text" defaultValue={this.state.title} />
           <input type="text" defaultValue={this.state.stitches} />
           <input type="text" defaultValue={this.state.rows} />
-          <input type="text" defaultValue={this.state.footcirc} />
-
-          <input type="text" defaultValue={this.state.footlength} />
+          <input type="text" defaultValue={this.state.width} />
+          <input type="text" defaultValue={this.state.height} />
           <button>Generate pattern</button>
         </form>
       </div>
@@ -139,5 +137,7 @@ let mapsStateToProps = state => {
     username: state.username
   };
 };
-let SockPatternForm = connect(mapsStateToProps)(UnconnectedSockPatternForm);
-export default SockPatternForm;
+let BabyBlanketPatternForm = connect(mapsStateToProps)(
+  UnconnectedBabyBlanketPatternForm
+);
+export default BabyBlanketPatternForm;

@@ -11,6 +11,7 @@ let reducer = (state, action) => {
         };
     }
     if (action.type === "login-success") {
+        console.log("logging the patterns", action.patterns)
         return {
             ...state,
             loggedIn: true,
@@ -19,10 +20,22 @@ let reducer = (state, action) => {
         };
     }
 
-    if (action.type === "data-submitted") {
+    if (action.type === "dataSock-submitted") {
         return {
             ...state,
-            data: action.data,
+            dataSock: action.dataSock,
+        };
+    }
+    if (action.type === "dataMittens-submitted") {
+        return {
+            ...state,
+            dataMittens: action.dataMittens,
+        };
+    }
+    if (action.type === "dataBabyBlanket-submitted") {
+        return {
+            ...state,
+            dataBabyBlanket: action.dataBabyBlanket,
         };
     }
     if (action.type === "reset-data") {
@@ -42,12 +55,26 @@ let reducer = (state, action) => {
 }
 
 let initialState = {
-    data: {
+    dataSock: {
         title: undefined,
         stitches: 0,
         rows: 0,
         footcirc: 0,
         footlength: 0
+    },
+    dataMittens: {
+        title: undefined,
+        stitches: 0,
+        rows: 0,
+        handcirc: 0,
+        handlength: 0
+    },
+    dataBabyBlanket: {
+        title: undefined,
+        stitches: 0,
+        rows: 0,
+        width: 0,
+        height: 0
     },
     users: [],
     username: "",
