@@ -14,7 +14,7 @@ let upload = multer({
 let cookieParser = require("cookie-parser");
 app.use(cookieParser());
 let sessions = {};
-
+let ObjectId = require('mongodb').ObjectID
 let dbo = undefined;
 let url =
     "mongodb+srv://knit:knit@cluster0-71uur.mongodb.net/test?retryWrites=true&w=majority";
@@ -198,6 +198,37 @@ app.post("/getPattern", upload.none(), (req, res) => {
         );
         return;
     });
+})
+
+app.post("/logout", upload.none(), (req, res) => {
+    let sessionId = req.cookies.sid;
+    let username = sessions[sessionId];
+
+    if (username === undefined) {
+        res.send(JSON.stringify({
+            success: false
+        }));
+        return;
+    }
+    delete username;
+    res.cookie("sid", 0, {
+        expires: -1
+    });
+    res.send(JSON.stringify({
+        success: true
+    }));
+    return;
+});
+
+app.post("/deletepattern", upload.none(), (req, res) => {
+    let patternId = req.body.id
+    dbo.collection("patterns").remove({
+        _id: new ObjectId(patternId)
+    })
+    res.send(JSON.stringify({
+        success: true
+    }));
+    return;
 })
 
 // Your endpoints go before this line

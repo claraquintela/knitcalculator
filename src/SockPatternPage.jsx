@@ -16,6 +16,7 @@ class UnconnectedSockPatternPage extends Component {
   render = () => {
     return (
       <div className="boxintern">
+       
         <Link to={"/"} className="linkhome">
           <img
             width="40px"
@@ -23,6 +24,7 @@ class UnconnectedSockPatternPage extends Component {
           />{" "}
           back to home
         </Link>
+
         <div className="container">
           <h3>
             {this.props.dataSock.title !== undefined

@@ -51,6 +51,24 @@ class UnconnectedMittensPattern extends Component {
                 " for " +
                 this.props.dataMittens.title}
             </h3>
+            <div className="basicinfo">
+              <img
+                className="imgpattern"
+                src="http://claraquintela.com/wp-content/uploads/2019/12/mittens.jpg"
+              />
+
+              <h4>Material</h4>
+              <div>needle: {this.props.dataMittens.needle} mm</div>
+              <div>yarn: {this.props.dataMittens.yarn}</div>
+              <h4>Gauge (in 1cm)</h4>
+              <div>stitches: {this.props.dataMittens.stitches}</div>
+              <div>rows: {this.props.dataMittens.rows}</div>
+              <h4>Measurement</h4>
+              <div>
+                hand circumference: {this.props.dataMittens.handcirc} cm
+              </div>
+            </div>
+            <br></br>
             <h4>Directions</h4>
             <div className="subtitle">CUFF</div>
             <div>
@@ -117,7 +135,6 @@ class UnconnectedMittensPattern extends Component {
               />{" "}
             </div>
           </div>
-          >
         </form>
       </div>
     );

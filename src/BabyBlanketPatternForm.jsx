@@ -12,6 +12,8 @@ class UnconnectedBabyBlanketPatternForm extends Component {
       rows: 0,
       width: 0,
       height: 0,
+      needle: "",
+      yarn: "",
       chosenPattern: undefined
     };
   }
@@ -40,6 +42,13 @@ class UnconnectedBabyBlanketPatternForm extends Component {
   handleHeight = event => {
     this.setState({ height: Number(event.target.value) });
   };
+  handleYarn = event => {
+    this.setState({ yarn: event.target.value });
+  };
+  handleNeedle = event => {
+    this.setState({ needle: event.target.value });
+  };
+
   handleSubmitPattern = async evt => {
     console.log("submitting pattern");
     if (evt !== undefined) {
@@ -51,7 +60,9 @@ class UnconnectedBabyBlanketPatternForm extends Component {
       this.state.stitches <= 0 ||
       this.state.rows <= 0 ||
       this.state.width <= 0 ||
-      this.state.height <= 0
+      this.state.height <= 0 ||
+      this.state.needle === "" ||
+      this.state.yarn === ""
     ) {
       alert("you're missing something");
       return;
@@ -64,7 +75,9 @@ class UnconnectedBabyBlanketPatternForm extends Component {
         stitches: this.state.stitches,
         rows: this.state.rows,
         width: this.state.width,
-        height: this.state.height
+        height: this.state.height,
+        needle: this.state.needle,
+        yarn: this.state.yarn
       }
     });
   };
@@ -84,6 +97,16 @@ class UnconnectedBabyBlanketPatternForm extends Component {
             />
             <input
               type="text"
+              placeholder="What yarn did you use?"
+              onChange={this.handleYarn}
+            />
+            <input
+              type="text"
+              placeholder="What needle size?"
+              onChange={this.handleNeedle}
+            />
+            <input
+              type="text"
               placeholder="Sts in 1cm"
               onChange={this.handleStitches}
             />
@@ -95,12 +118,12 @@ class UnconnectedBabyBlanketPatternForm extends Component {
 
             <input
               type="text"
-              placeholder="Width"
+              placeholder="Total width (in cm)"
               onChange={this.handleWidth}
             />
             <input
               type="text"
-              placeholder="Height"
+              placeholder="Total height (in cm)"
               onChange={this.handleHeight}
             />
             <button>Generate pattern</button>
@@ -120,6 +143,8 @@ class UnconnectedBabyBlanketPatternForm extends Component {
         </div>
         <form className="pattern-form" onSubmit={this.handleSubmitPattern}>
           <input type="text" defaultValue={this.state.title} />
+          <input type="text" defaultValue={this.state.yarn} />
+          <input type="text" defaultValue={this.state.needle} />
           <input type="text" defaultValue={this.state.stitches} />
           <input type="text" defaultValue={this.state.rows} />
           <input type="text" defaultValue={this.state.width} />

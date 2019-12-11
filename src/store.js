@@ -51,12 +51,24 @@ let reducer = (state, action) => {
             patterns: action.patterns,
         };
     }
+
+    if (action.type === "delete-pattern") {
+        return {
+            ...state,
+            patterns: state.patterns.filter(pattern => {
+                if (pattern._id !== action.id) return true
+                else return false
+            }),
+        };
+    }
     return state
 }
 
 let initialState = {
     dataSock: {
         title: undefined,
+        needle: "",
+        yarn: "",
         stitches: 0,
         rows: 0,
         footcirc: 0,
@@ -64,6 +76,8 @@ let initialState = {
     },
     dataMittens: {
         title: undefined,
+        needle: "",
+        yarn: "",
         stitches: 0,
         rows: 0,
         handcirc: 0,
@@ -71,6 +85,8 @@ let initialState = {
     },
     dataBabyBlanket: {
         title: undefined,
+        needle: "",
+        yarn: "",
         stitches: 0,
         rows: 0,
         width: 0,
@@ -80,7 +96,6 @@ let initialState = {
     username: "",
     patterns: [],
     loggedIn: false,
-    hasSearched: false
 }
 
 let store = createStore(

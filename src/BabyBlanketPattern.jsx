@@ -57,17 +57,34 @@ class UnconnectedBabyBlanketPattern extends Component {
                 " for " +
                 this.props.dataBabyBlanket.title}
             </h3>
+            <div className="basicinfo">
+              <img
+                className="imgpattern"
+                src="http://claraquintela.com/wp-content/uploads/2019/12/Blanket.jpg"
+              />
+              <h4>Material</h4>
+              <div>needle: {this.props.dataBabyBlanket.needle} mm</div>
+              <div>yarn: {this.props.dataBabyBlanket.yarn}</div>
+              <h4>Gauge (in 1cm)</h4>
+              <div>stitches: {this.props.dataBabyBlanket.stitches}</div>
+              <div>rows: {this.props.dataBabyBlanket.rows}</div>
+              <h4>Measurement</h4>
+              <div>Width: {this.props.dataBabyBlanket.width} cm</div>
+              <div>Height: {this.props.dataBabyBlanket.heigth} cm</div>
+            </div>
+            <br></br>
             <h4>Directions</h4>
             <div>
               Cast on {this.stitchesCalculation()} sts and work in garter stitch
               for {this.rowsCalculation()} rows.
             </div>
             <div>Break yarn, put it in a darn needl and weave in ends.</div>{" "}
+            <br></br>
             <div className="subtitle">Variation:</div>
             <div>
               If you want to work with colors, knit the rows with one skein
-              until you run out of yarn. Then , change for the second color and
-              repeat the process. You can useas many colors as you wish.{" "}
+              until you run out of yarn. Then, change for the second color and
+              repeat the process. You can use as many colors as you wish.{" "}
             </div>
             <div className="twobuttons">
               {" "}

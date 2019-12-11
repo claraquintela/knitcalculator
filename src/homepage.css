@@ -1,8 +1,7 @@
 .box {
     background-image: url(http://claraquintela.com/wp-content/uploads/2019/11/page2_background.png);
-    background-repeat: no-repeat;
+    background-repeat: repeat;
     background-size: cover;
-
     padding: 4% 0%;
     height: 100vh;
 }
@@ -34,4 +33,10 @@
     background-color: black;
     width: 400px;
 
+}
+
+.logout {
+    font-family: "Roboto", sans-serif;
+    color: black;
+    margin-left: 550px;
 }

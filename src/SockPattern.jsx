@@ -55,6 +55,23 @@ class UnconnectedSockPattern extends Component {
             <h3>
               {this.props.dataSock.type + " for " + this.props.dataSock.title}
             </h3>
+            <div className="basicinfo">
+              <img
+                className="imgpattern"
+                src="http://claraquintela.com/wp-content/uploads/2019/12/socks.jpg"
+              />
+              <h4>Material</h4>
+              <div>needle: {this.props.dataSock.needle} mm</div>
+              <div>yarn: {this.props.dataSock.yarn}</div>
+              <h4>Gauge (in 1cm)</h4>
+              <div>stitches: {this.props.dataSock.stitches}</div>
+              <div>rows: {this.props.dataSock.rows}</div>
+              <h4>Measurement</h4>
+              <div>foot circumference: {this.props.dataSock.footcirc} cm </div>
+              <div>foot length: {this.props.dataSock.footlength} cm</div>
+            </div>
+            {""}
+            <br></br>
             <h4>Directions</h4>
             <div className="subtitle">CUFF</div>
             <div>

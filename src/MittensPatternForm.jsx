@@ -11,7 +11,9 @@ class UnconnectedMittensPatternForm extends Component {
       stitches: 0,
       rows: 0,
       handcirc: 0,
-      chosenPattern: undefined
+      chosenPattern: undefined,
+      needle: "",
+      yarn: ""
     };
   }
 
@@ -36,6 +38,12 @@ class UnconnectedMittensPatternForm extends Component {
   handleHandcirc = event => {
     this.setState({ handcirc: Number(event.target.value) });
   };
+  handleYarn = event => {
+    this.setState({ yarn: event.target.value });
+  };
+  handleNeedle = event => {
+    this.setState({ needle: event.target.value });
+  };
 
   handleSubmitPattern = async evt => {
     console.log("submitting pattern");
@@ -47,7 +55,9 @@ class UnconnectedMittensPatternForm extends Component {
       this.state.title === "" ||
       this.state.stitches <= 0 ||
       this.state.rows <= 0 ||
-      this.state.handcirc <= 0
+      this.state.handcirc <= 0 ||
+      this.state.needle === "" ||
+      this.state.yarn === ""
     ) {
       alert("you're missing something");
       return;
@@ -59,7 +69,9 @@ class UnconnectedMittensPatternForm extends Component {
         title: this.state.title,
         stitches: this.state.stitches,
         rows: this.state.rows,
-        handcirc: this.state.handcirc
+        handcirc: this.state.handcirc,
+        needle: this.state.needle,
+        yarn: this.state.yarn
       }
     });
   };
@@ -77,6 +89,16 @@ class UnconnectedMittensPatternForm extends Component {
               type="text"
               placeholder="Whose mittens are these?"
               onChange={this.handleTitle}
+            />
+            <input
+              type="text"
+              placeholder="What yarn did you use?"
+              onChange={this.handleYarn}
+            />
+            <input
+              type="text"
+              placeholder="What needle size?"
+              onChange={this.handleNeedle}
             />
             <input
               type="text"
@@ -112,11 +134,11 @@ class UnconnectedMittensPatternForm extends Component {
         </div>
         <form className="pattern-form" onSubmit={this.handleSubmitPattern}>
           <input type="text" defaultValue={this.state.title} />
+          <input type="text" defaultValue={this.state.yarn} />
+          <input type="text" defaultValue={this.state.needle} />
           <input type="text" defaultValue={this.state.stitches} />
           <input type="text" defaultValue={this.state.rows} />
           <input type="text" defaultValue={this.state.handcirc} />
-
-          <input type="text" defaultValue={this.state.handlength} />
           <button>Generate pattern</button>
         </form>
       </div>

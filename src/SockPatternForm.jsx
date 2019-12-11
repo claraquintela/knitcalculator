@@ -12,6 +12,8 @@ class UnconnectedSockPatternForm extends Component {
       rows: 0,
       footcirc: 0,
       footlength: 0,
+      needle: "",
+      yarn: "",
       chosenPattern: undefined
     };
   }
@@ -40,6 +42,13 @@ class UnconnectedSockPatternForm extends Component {
   handleFootlength = event => {
     this.setState({ footlength: Number(event.target.value) });
   };
+
+  handleYarn = event => {
+    this.setState({ yarn: event.target.value });
+  };
+  handleNeedle = event => {
+    this.setState({ needle: event.target.value });
+  };
   handleSubmitPattern = async evt => {
     console.log("submitting pattern");
     if (evt !== undefined) {
@@ -51,7 +60,9 @@ class UnconnectedSockPatternForm extends Component {
       this.state.stitches <= 0 ||
       this.state.rows <= 0 ||
       this.state.footcirc <= 0 ||
-      this.state.footlength <= 0
+      this.state.footlength <= 0 ||
+      this.state.needle === "" ||
+      this.state.yarn === ""
     ) {
       alert("you're missing something");
       return;
@@ -64,12 +75,13 @@ class UnconnectedSockPatternForm extends Component {
         stitches: this.state.stitches,
         rows: this.state.rows,
         footcirc: this.state.footcirc,
-        footlength: this.state.footlength
+        footlength: this.state.footlength,
+        needle: this.state.needle,
+        yarn: this.state.yarn
       }
     });
   };
   render = () => {
-    console.log("pattern id", this.props.id);
     if (this.props.id === undefined) {
       return (
         <div>
@@ -82,6 +94,16 @@ class UnconnectedSockPatternForm extends Component {
               type="text"
               placeholder="Whose socks are these?"
               onChange={this.handleTitle}
+            />
+            <input
+              type="text"
+              placeholder="What yarn did you use?"
+              onChange={this.handleYarn}
+            />
+            <input
+              type="text"
+              placeholder="What needle size?"
+              onChange={this.handleNeedle}
             />
             <input
               type="text"
@@ -121,10 +143,11 @@ class UnconnectedSockPatternForm extends Component {
         </div>
         <form className="pattern-form" onSubmit={this.handleSubmitPattern}>
           <input type="text" defaultValue={this.state.title} />
+          <input type="text" defaultValue={this.state.yarn} />
+          <input type="text" defaultValue={this.state.needle} />
           <input type="text" defaultValue={this.state.stitches} />
           <input type="text" defaultValue={this.state.rows} />
           <input type="text" defaultValue={this.state.footcirc} />
-
           <input type="text" defaultValue={this.state.footlength} />
           <button>Generate pattern</button>
         </form>
