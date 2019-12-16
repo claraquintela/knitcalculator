@@ -11,6 +11,8 @@ import MittensPatternPage from "./MittensPatternPage.jsx";
 import BabyBlanketPatternPage from "./BabyBlanketPatternPage.jsx";
 import MittensPatternForm from "./MittensPatternForm.jsx";
 import BabyBlanketPatternForm from "./BabyBlanketPatternForm.jsx";
+import ScarfPatternForm from "./ScarfPatternForm.jsx";
+import ScarfPatternPage from "./ScarfPatternPage.jsx";
 
 class UnconnectedApp extends Component {
   renderPatterns = routerData => {
@@ -26,6 +28,9 @@ class UnconnectedApp extends Component {
     }
     if (path[1] === "babyblanket") {
       return <BabyBlanketPatternPage id={path[0]} />;
+    }
+    if (path[1] === "scarf") {
+      return <ScarfPatternPage id={path[0]} />;
     }
   };
 
@@ -58,6 +63,11 @@ class UnconnectedApp extends Component {
         />
         <Route
           exact={true}
+          path="/Scarfpatternform"
+          component={ScarfPatternForm}
+        />
+        <Route
+          exact={true}
           path="/SockPatternPage"
           component={SockPatternPage}
         />
@@ -70,6 +80,11 @@ class UnconnectedApp extends Component {
           exact={true}
           path="/BabyBlanketPatternPage"
           component={BabyBlanketPatternPage}
+        />
+        <Route
+          exact={true}
+          path="/ScarfPatternPage"
+          component={ScarfPatternPage}
         />
       </BrowserRouter>
     );

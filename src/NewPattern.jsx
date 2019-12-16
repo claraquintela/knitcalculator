@@ -24,18 +24,24 @@ class UnconnectedNewPattern extends Component {
     this.props.dispatch({
       type: "new-pattern"
     });
-    if (this.state.type === "socks") {
-      this.props.history.push("/SockPatternPage");
-      alert(`You chose ${this.state.type} pattern.`);
+    if (this.state.type === "babyblanket") {
+      this.props.history.push("/BabyBlanketPatternPage");
       return;
     }
+
     if (this.state.type === "mittens") {
       this.props.history.push("/MittensPatternPage");
       alert(`You chose ${this.state.type} pattern.`);
       return;
     }
-    if (this.state.type === "babyblanket") {
-      this.props.history.push("/BabyBlanketPatternPage");
+    if (this.state.type === "scarf") {
+      this.props.history.push("/ScarfPatternPage");
+      alert(`You chose ${this.state.type} pattern.`);
+      return;
+    }
+    if (this.state.type === "socks") {
+      this.props.history.push("/SockPatternPage");
+      alert(`You chose ${this.state.type} pattern.`);
       return;
     } else alert(`please, pick a pattern.`);
     return;
@@ -50,15 +56,6 @@ class UnconnectedNewPattern extends Component {
           <div>
             <input
               type="radio"
-              value="socks"
-              checked={this.state.type === "socks"}
-              onChange={this.handleChange}
-            />{" "}
-            Socks{" "}
-          </div>
-          <div>
-            <input
-              type="radio"
               value="mittens"
               checked={this.state.type === "mittens"}
               onChange={this.handleChange}
@@ -68,12 +65,30 @@ class UnconnectedNewPattern extends Component {
           <div>
             <input
               type="radio"
+              value="scarf"
+              checked={this.state.type === "scarf"}
+              onChange={this.handleChange}
+            />{" "}
+            Scarf{" "}
+          </div>
+          <div>
+            <input
+              type="radio"
               value="babyblanket"
               checked={this.state.type === "babyblanket"}
               onChange={this.handleChange}
             />{" "}
             Simple Baby Blanket{" "}
           </div>{" "}
+          <div>
+            <input
+              type="radio"
+              value="socks"
+              checked={this.state.type === "socks"}
+              onChange={this.handleChange}
+            />{" "}
+            Socks{" "}
+          </div>
           <input
             type="submit"
             className="buttonNew"

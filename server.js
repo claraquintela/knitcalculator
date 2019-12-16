@@ -163,6 +163,14 @@ app.post("/pattern", upload.none(), (req, res) => {
             dataBabyBlanket: dataBabyBlanket,
         });
     }
+    if (req.body.dataScarf) {
+        let dataScarf = JSON.parse(req.body.dataScarf);
+        let username = req.body.username;
+        dbo.collection("patterns").insertOne({
+            username: username,
+            dataScarf: dataScarf,
+        });
+    }
     res.send(
         JSON.stringify({
             success: true

@@ -26,6 +26,12 @@ let reducer = (state, action) => {
             dataSock: action.dataSock,
         };
     }
+    if (action.type === "dataScarf-submitted") {
+        return {
+            ...state,
+            dataScarf: action.dataScarf,
+        };
+    }
     if (action.type === "dataMittens-submitted") {
         return {
             ...state,
@@ -67,6 +73,7 @@ let reducer = (state, action) => {
             dataSock: initialState.dataSock,
             dataMittens: initialState.dataMittens,
             dataBabyBlanket: initialState.dataBabyBlanket,
+            dataScarf: initialState.dataScarf,
         };
     }
     return state
@@ -95,6 +102,15 @@ let initialState = {
         handlength: 0
     },
     dataBabyBlanket: {
+        title: undefined,
+        needle: "",
+        yarn: "",
+        stitches: 0,
+        rows: 0,
+        width: 0,
+        height: 0
+    },
+    dataScarf: {
         title: undefined,
         needle: "",
         yarn: "",

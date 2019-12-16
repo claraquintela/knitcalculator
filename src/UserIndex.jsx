@@ -89,6 +89,26 @@ class UnconnectedUserIndex extends Component {
                   </div>
                 );
               }
+              if (p.dataScarf) {
+                return (
+                  <div>
+                    <Link to={"/patterns/" + p._id + "---scarf"}>
+                      <li key={i}>
+                        {p.dataScarf.type + " for " + p.dataScarf.title}
+                      </li>
+                    </Link>
+
+                    <button
+                      className="deletebutton"
+                      onClick={() => {
+                        this.handleDeletePattern(p._id);
+                      }}
+                    >
+                      delete this pattern
+                    </button>
+                  </div>
+                );
+              }
               if (p.dataBabyBlanket) {
                 return (
                   <div>

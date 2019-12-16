@@ -3,10 +3,10 @@ import { connect } from "react-redux";
 import ReactToPrint from "react-to-print";
 import "./sockpatternpage.css";
 
-class UnconnectedBabyBlanketPattern extends Component {
+class UnconnectedScarfPattern extends Component {
   stitchesCalculation = () => {
     let stitchNumber = Math.round(
-      this.props.dataBabyBlanket.stitches * this.props.dataBabyBlanket.width
+      this.props.dataScarf.stitches * this.props.dataScarf.width
     );
     if (stitchNumber % 2 !== 0) {
       return stitchNumber + 1;
@@ -16,7 +16,7 @@ class UnconnectedBabyBlanketPattern extends Component {
 
   rowsCalculation = () => {
     let rowNumber = Math.round(
-      this.props.dataBabyBlanket.rows * this.props.dataBabyBlanket.height
+      this.props.dataScarf.rows * this.props.dataScarf.height
     );
     if (rowNumber % 2 !== 0) {
       return rowNumber + 1;
@@ -27,7 +27,7 @@ class UnconnectedBabyBlanketPattern extends Component {
   handleSavePattern = async evt => {
     evt.preventDefault();
     let data = new FormData();
-    data.append("dataBabyBlanket", JSON.stringify(this.props.dataBabyBlanket));
+    data.append("dataScarf", JSON.stringify(this.props.dataScarf));
     data.append("username", this.props.username);
     let response = await fetch("/pattern", {
       method: "POST",
@@ -53,24 +53,22 @@ class UnconnectedBabyBlanketPattern extends Component {
         <form onSubmit={this.handleSavePattern}>
           <div>
             <h3>
-              {this.props.dataBabyBlanket.type +
-                " for " +
-                this.props.dataBabyBlanket.title}
+              {this.props.dataScarf.type + " for " + this.props.dataScarf.title}
             </h3>
             <div className="basicinfo">
               <img
                 className="imgpattern"
-                src="http://claraquintela.com/wp-content/uploads/2019/12/Blanket.jpg"
+                src="http://claraquintela.com/wp-content/uploads/2019/12/scarf.jpg"
               />
               <h4>Material</h4>
-              <div>needle: {this.props.dataBabyBlanket.needle} mm</div>
-              <div>yarn: {this.props.dataBabyBlanket.yarn}</div>
+              <div>needle: {this.props.dataScarf.needle} mm</div>
+              <div>yarn: {this.props.dataScarf.yarn}</div>
               <h4>Gauge (in 1cm)</h4>
-              <div>stitches: {this.props.dataBabyBlanket.stitches}</div>
-              <div>rows: {this.props.dataBabyBlanket.rows}</div>
+              <div>stitches: {this.props.dataScarf.stitches}</div>
+              <div>rows: {this.props.dataScarf.rows}</div>
               <h4>Measurement</h4>
-              <div>Width: {this.props.dataBabyBlanket.width} cm</div>
-              <div>Height: {this.props.dataBabyBlanket.heigth} cm</div>
+              <div>Width: {this.props.dataScarf.width} cm</div>
+              <div>Height: {this.props.dataScarf.heigth} cm</div>
             </div>
             <br></br>
             <h4>Directions</h4>
@@ -79,7 +77,7 @@ class UnconnectedBabyBlanketPattern extends Component {
               - or any stitch pattern you swatched - for{" "}
               {this.rowsCalculation()} rows.
             </div>
-            <div>Break yarn, put it in a darn needl and weave in ends.</div>{" "}
+            <div>Break yarn, put it in a darn needle and weave in ends.</div>{" "}
             <br></br>
             <div className="subtitle">Variation:</div>
             <div>
@@ -104,12 +102,10 @@ class UnconnectedBabyBlanketPattern extends Component {
 
 let mapStateToProps = state => {
   return {
-    dataBabyBlanket: state.dataBabyBlanket,
+    dataScarf: state.dataScarf,
     username: state.username
   };
 };
 
-let BabyBlanketPattern = connect(mapStateToProps)(
-  UnconnectedBabyBlanketPattern
-);
-export default BabyBlanketPattern;
+let ScarfPattern = connect(mapStateToProps)(UnconnectedScarfPattern);
+export default ScarfPattern;
