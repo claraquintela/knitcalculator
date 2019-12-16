@@ -53,12 +53,12 @@ class UnconnectedSignupForm extends Component {
     this.setState({ username: "", password: "", email: "" });
     this.props.dispatch({
       type: "login-success",
-      username: this.state.username
+      username: this.state.username,
+      patterns: []
     });
-    this.setState({ redirect: true });
   };
   render() {
-    if (this.state.redirect) return <Redirect to="/homepage" />;
+    if (this.props.loggedIn) return <Redirect to="/" />;
     return (
       <div>
         <Header />
@@ -105,5 +105,11 @@ class UnconnectedSignupForm extends Component {
     );
   }
 }
-let SignupForm = connect()(UnconnectedSignupForm);
+let mapStateToProp = state => {
+  return {
+    loggedIn: state.loggedIn
+  };
+};
+
+let SignupForm = connect(mapStateToProp)(UnconnectedSignupForm);
 export default SignupForm;

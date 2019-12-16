@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import "./userindex.css";
 
@@ -20,7 +21,9 @@ class UnconnectedNewPattern extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-
+    this.props.dispatch({
+      type: "new-pattern"
+    });
     if (this.state.type === "socks") {
       this.props.history.push("/SockPatternPage");
       alert(`You chose ${this.state.type} pattern.`);
@@ -82,4 +85,5 @@ class UnconnectedNewPattern extends Component {
   };
 }
 
-export default withRouter(UnconnectedNewPattern);
+let NewPattern = connect()(UnconnectedNewPattern);
+export default withRouter(NewPattern);

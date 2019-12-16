@@ -61,8 +61,19 @@ let reducer = (state, action) => {
             }),
         };
     }
+    if (action.type === "new-pattern") {
+        return {
+            ...state,
+            dataSock: initialState.dataSock,
+            dataMittens: initialState.dataMittens,
+            dataBabyBlanket: initialState.dataBabyBlanket,
+        };
+    }
     return state
-}
+};
+
+
+
 
 let initialState = {
     dataSock: {
