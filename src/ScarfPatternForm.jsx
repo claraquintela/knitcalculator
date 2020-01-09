@@ -87,7 +87,7 @@ class UnconnectedScarfPatternForm extends Component {
         <div>
           <div className="warning">
             <div>* All fields must be filled in</div>
-            <div>* Decimals must be separated with a ".". Exemple: 3.6</div>
+            <div>* Decimals must be separated with a ".". example: 3.6</div>
           </div>
           <form className="pattern-form" onSubmit={this.handleSubmitPattern}>
             <input
@@ -139,7 +139,7 @@ class UnconnectedScarfPatternForm extends Component {
       <div>
         <div className="warning">
           <div>*All fields must be filled in</div>
-          <div>Decimals must be separated with a ".". Exemple: 3.6</div>
+          <div>Decimals must be separated with a ".". example: 3.6</div>
         </div>
         <form className="pattern-form" onSubmit={this.handleSubmitPattern}>
           <input type="text" defaultValue={this.state.title} />
